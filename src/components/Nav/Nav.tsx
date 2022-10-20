@@ -7,7 +7,7 @@ const Nav = () => {
     <nav>
       <div className='nav-wrapper'>
         <img src={nbalogo} alt='' />
-        <h1> NBA DATABASE</h1>
+        <h1> NBA PLAYER DATABASE</h1>
       </div>
     </nav>
   );

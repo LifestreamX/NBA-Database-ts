@@ -1,3 +1,15 @@
+TODO:
+ - Find way to pass data fetched with React Query or other method
+ - When clicked go to details using Id
+ - use Pagination to fetch different page
+ - 
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

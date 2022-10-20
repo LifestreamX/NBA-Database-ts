@@ -1,28 +1,43 @@
-import { useState, CSSProperties } from 'react';
+import { useState, CSSProperties, useEffect, useRef } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useWindowResize } from '../../hooks/windowSizeHook';
+
 
 const override: CSSProperties = {
   display: 'block',
   margin: ' auto',
 };
 
+
+
 function Spinner() {
-  let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState('black');
+  let [loading, setLoading] = useState<boolean>(true);
+  let [color, setColor] = useState<string>('black');
 
-  const [width, height] = useWindowResize();    
+  const [width, height] = useWindowResize();
 
-  console.log(width)
+  let [spinnerSize, setSpinnerSize] = useState<number>(0);
+
+// Sets spinner size base of width of screen
+  useEffect(() => {
+    if (width <= 480) {
+      setSpinnerSize(100);
+    } else if (width <= 768) {
+      setSpinnerSize(200);
+    } else if (width > 768) {
+      setSpinnerSize(300);
+    }
+  }, [width]);
+
 
   return (
-      <ClipLoader
-        loading={loading}
-        cssOverride={override}
-        size={200}
-        aria-label='Loading Spinner'
-        data-testid='loader'
-      />
+    <ClipLoader
+      loading={loading}
+      cssOverride={override}
+      size={spinnerSize}
+      aria-label='Loading Spinner'
+      data-testid='loader'
+    />
   );
 }
 
