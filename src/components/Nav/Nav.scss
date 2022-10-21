@@ -2,7 +2,6 @@ nav {
   width: 100%;
   display: flex;
   justify-content: center;
-  // margin-top: 10px !important;
   background-color: white;
 
   .nav-wrapper {
@@ -10,13 +9,14 @@ nav {
     justify-content: center;
 
     img {
-      width: 100px;
+      width: 70px;
       position: absolute;
+      margin-top: 5px;
       left: 0;
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-size: 20px;
     }
   }
 }
@@ -25,11 +25,11 @@ nav {
   nav {
     .nav-wrapper {
       img {
-        width: 200px;
+        width: 120px;
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 28px;
       }
     }
   }
@@ -38,8 +38,7 @@ nav {
 @media screen and (min-width: 1025px) {
   nav {
     .nav-wrapper {
-
-      img{
+      img {
         top: 20px;
       }
 

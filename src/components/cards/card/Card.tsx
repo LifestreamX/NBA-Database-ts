@@ -31,13 +31,19 @@ const Card = () => {
             <div className='font'>
               <p>First Name: {player.first_name}</p>
               <p>Last Name: {player.last_name}</p>
-              <p>Position: {player.position}</p>
+
+              <p>
+                Position: {player.position !== '' && player.position}{' '}
+                {player.position === '' && 'N/A'}
+              </p>
             </div>
             <div className='back'>
               <p>
                 Team: {player.team.city} {player.team.name}
               </p>
               <p>Conference: {player.team.conference}</p>
+
+              <p>Division: {player.team.division}</p>
             </div>
           </div>
         </div>
