@@ -4,8 +4,10 @@ import './App.scss';
 import Nav from './components/Nav/Nav';
 import { useQuery } from 'react-query';
 import Spinner from './components/Nav/spinner/Spinner';
-import { getPlayers } from './components/API';
+// import { getPlayers } from './components/API';
 import Cards from './components/cards/Cards';
+import { getPlayers } from './components/cards/card/Card';
+
 
 // import { PlayerType } from './types/Players.types';
 
@@ -53,12 +55,7 @@ const App = () => {
         </div>
       )}
       <Cards />
-
-      {/* <section>
-        {data?.data?.map((item: any) => (
-          <h1>{item.id}</h1>
-        ))}
-      </section> */}
+ 
     </main>
   );
 };

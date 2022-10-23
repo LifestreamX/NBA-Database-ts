@@ -10,6 +10,7 @@
   position: absolute;
   justify-content: center;
   align-content: center;
+  top: 70px;
 }
 
 .card {
@@ -34,6 +35,7 @@
   justify-content: center;
   align-items: center;
   background: #116393;
+  border-radius: 20px !important;
 }
 
 .card:hover .content {
@@ -77,6 +79,22 @@ p {
   transform: rotateY(180deg);
 }
 
+// Pagination
+.pagination-wrapper {
+  position: absolute;
+  margin-top: 100px !important;
+  bottom: 20px;
+  width: 100%;
+
+  .pagi {
+    li {
+      button {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
 // Responsiveness for Tablets and bigger
 @media screen and (min-width: 768px) {
   .card-wrapper {
@@ -97,4 +115,22 @@ p {
     font-size: 40px;
     font-weight: bolder;
   }
+
+  //   Pagination
+  .pagination-wrapper {
+    width: 100%;
+
+    .pagi {
+      background-color: red;
+
+      li {
+        button {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1025px) {
 }
