@@ -5,6 +5,7 @@ import './Card.scss';
 import ReactPaginate from 'react-paginate';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import SearchPlayer from '../../search/SearchPlayer';
 
 export type PlayerType = {
   first_name: string;
@@ -59,7 +60,10 @@ const Card = () => {
   console.log(players);
   return (
     <>
-      <div className='card-wrapper'>
+  
+
+      {/* Card section */}
+      <section className='card-wrapper'>
         {players?.map((player) => (
           <div className='card' key={player.id}>
             <div className='content'>
@@ -93,7 +97,7 @@ const Card = () => {
             sx={{ fontSize: '4rem' }}
           />
         </section>
-      </div>
+      </section>
     </>
   );
 };

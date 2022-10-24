@@ -1,12 +1,15 @@
 @import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
 
+// Search
+
+
 .card-wrapper {
   width: 100%;
 
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-top: 30px !important;
+  margin-top: 100px !important;
   position: absolute;
   justify-content: center;
   align-content: center;
@@ -21,7 +24,8 @@
   background-color: white;
   justify-content: center;
   align-content: center;
-  margin: 100px;
+  margin: 50px;
+  margin-bottom: 150px !important;
 }
 
 .content {
@@ -104,6 +108,7 @@ p {
   .card {
     width: 500px;
     height: 500px;
+    margin-bottom: 250px !important;
   }
 
   .content {
@@ -121,8 +126,6 @@ p {
     width: 100%;
 
     .pagi {
-      background-color: red;
-
       li {
         button {
           font-size: 28px;
@@ -133,4 +136,8 @@ p {
 }
 
 @media screen and (min-width: 1025px) {
+  .card {
+    margin: 140px !important;
+    margin-bottom: 250px !important;
+  }
 }

@@ -1,0 +1,33 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  top: 80px !important;
+
+  .search-icon {
+    position: relative;
+    left: 50px;
+  }
+
+  .filter-input {
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search {
+    top: 100px !important;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .search {
+    top: 200px !important;
+  }
+}
