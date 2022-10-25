@@ -22,6 +22,11 @@ export type dataType = {
   data: any;
 };
 
+type Props = {
+  searchInput: any;
+  filteredResults: any;
+};
+
 const options = {
   method: 'GET',
   headers: {
@@ -38,7 +43,7 @@ export const getPlayers = async (pageNumber: any): Promise<dataType> =>
     )
   ).json();
 
-const Card = () => {
+const Card: React.FC<Props> = ({ searchInput, filteredResults }) => {
   const [players, setPlayers] = useState([] as PlayerType[]);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -57,47 +62,77 @@ const Card = () => {
     setPageNumber(p);
   };
 
-  console.log(players);
+  // console.log(players);
   return (
     <>
-  
-
       {/* Card section */}
-      <section className='card-wrapper'>
-        {players?.map((player) => (
-          <div className='card' key={player.id}>
-            <div className='content'>
-              <div className='font'>
-                <p>First Name: {player.first_name}</p>
-                <p>Last Name: {player.last_name}</p>
 
-                <p>
-                  Position: {player.position !== '' && player.position}{' '}
-                  {player.position === '' && 'N/A'}
-                </p>
+      {searchInput.length > 1 ? (
+        filteredResults.map((player: any) => {
+          return (
+            <section className='card-wrapper'>
+              <div className='card' key={player.id}>
+                <div className='content'>
+                  <div className='font'>
+                    <p>First Name: {player.first_name}</p>
+                    <p>Last Name: {player.last_name}</p>
+
+                    <p>
+                      Position: {player.position !== '' && player.position}{' '}
+                      {player.position === '' && 'N/A'}
+                    </p>
+                  </div>
+                  <div className='back'>
+                    <p>
+                      Team: {player.team.city} {player.team.name}
+                    </p>
+                    <p>Conference: {player.team.conference}</p>
+
+                    <p>Division: {player.team.division}</p>
+                  </div>
+                </div>
               </div>
-              <div className='back'>
-                <p>
-                  Team: {player.team.city} {player.team.name}
-                </p>
-                <p>Conference: {player.team.conference}</p>
+            </section>
+          );
+        })
+      ) : (
+        <section className='card-wrapper'>
+          {players?.map((player) => (
+            <div className='card' key={player.id}>
+              <div className='content'>
+                <div className='font'>
+                  <p>First Name: {player.first_name}</p>
+                  <p>Last Name: {player.last_name}</p>
 
-                <p>Division: {player.team.division}</p>
+                  <p>
+                    Position: {player.position !== '' && player.position}{' '}
+                    {player.position === '' && 'N/A'}
+                  </p>
+                </div>
+                <div className='back'>
+                  <p>
+                    Team: {player.team.city} {player.team.name}
+                  </p>
+                  <p>Conference: {player.team.conference}</p>
+
+                  <p>Division: {player.team.division}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        {/* PAGINATION SECTION */}
-        <section className='pagination-wrapper'>
-          <Pagination
-            count={11}
-            color='primary'
-            onChange={handleChange}
-            className='pagi'
-            sx={{ fontSize: '4rem' }}
-          />
+          ))}
+
+          {/* PAGINATION SECTION */}
+          <section className='pagination-wrapper'>
+            <Pagination
+              count={11}
+              color='primary'
+              onChange={handleChange}
+              className='pagi'
+              sx={{ fontSize: '4rem' }}
+            />
+          </section>
         </section>
-      </section>
+      )}
     </>
   );
 };

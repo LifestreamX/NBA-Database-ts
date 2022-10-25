@@ -9,7 +9,7 @@
       -ms-flex-align: center;
           align-items: center;
   position: absolute;
-  left: 0;
+  left: -10px;
   z-index: 100;
   top: 80px !important;
 }
