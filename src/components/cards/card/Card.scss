@@ -1,16 +1,17 @@
 @import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
 
 // Search
-
+main {
+  height: 100%;
+}
 
 .card-wrapper {
   width: 100%;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 100px !important;
-  position: absolute;
   justify-content: center;
   align-content: center;
   top: 70px;
@@ -85,7 +86,6 @@ p {
 
 // Pagination
 .pagination-wrapper {
-  position: absolute;
   margin-top: 100px !important;
   bottom: 20px;
   width: 100%;
