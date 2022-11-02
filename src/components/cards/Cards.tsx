@@ -5,6 +5,7 @@ import Card from './card/Card';
 import { useQuery } from 'react-query';
 
 import './Cards.scss';
+import SearchAllPlayers from '../searchAllPlayers/SearchAllPlayers';
 
 // TYPES SECTION
 export type PlayerType = {
@@ -54,6 +55,10 @@ const Cards: React.FC = () => {
   const [searchInput, setSearchInput] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
 
+  // Filter all state
+  const [searchAllValue, setSearchAllValue] = useState('');
+  const [filteredAllResults, setFilteredAllResults] = useState('');
+
   const { data, isLoading, error } = useQuery<any>(
     ['players', pageNumber],
     () => getPlayers(pageNumber)
@@ -86,6 +91,13 @@ const Cards: React.FC = () => {
     } else setFilteredResults(data?.data);
   };
 
+  // // FILTER FOR ALL PLAYERS
+  // const searchingForAllPlayers = (searchValues: string) => {
+  //   setSearchAllValue(searchValues);
+  // };
+
+  console.log(filteredAllResults);
+
   return (
     <main>
       <SearchPlayer
@@ -93,11 +105,19 @@ const Cards: React.FC = () => {
         setSearchInput={setSearchInput}
         SearchPlayers={SearchPlayers}
       />
+      <SearchAllPlayers
+        searchAllValue={searchAllValue}
+        setSearchAllValue={setSearchAllValue}
+        // searchingForAllPlayers={searchingForAllPlayers}
+        setFilteredAllResults={setFilteredAllResults}
+        filteredAllResults={filteredAllResults}
+      />
       <Card
         searchInput={searchInput}
         filteredResults={filteredResults}
         players={players}
         handleChange={handleChange}
+        filteredAllResults={filteredAllResults}
       />
     </main>
   );

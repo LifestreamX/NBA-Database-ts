@@ -7,68 +7,21 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import SearchPlayer from '../../search/SearchPlayer';
 
-// export type PlayerType = {
-//   first_name: string;
-//   height_feet: number;
-//   height_inches: number;
-//   id: number;
-//   last_name: string;
-//   position: string;
-//   weight_pounds: number;
-//   team: any;
-// };
-
-// export type dataType = {
-//   data: any;
-// };
-
 type Props = {
   searchInput: any;
   filteredResults: any;
   players: any;
   handleChange: any;
+  filteredAllResults: any;
 };
-
-// const options = {
-//   method: 'GET',
-//   headers: {
-//     'X-RapidAPI-Key': 'cb7dfb7b40msh9a3b45b655e8effp17b293jsna42fa502c4b0',
-//     'X-RapidAPI-Host': 'free-nba.p.rapidapi.com',
-//   },
-// };
-
-// export const getPlayers = async (pageNumber: any): Promise<dataType> =>
-//   await (
-//     await fetch(
-//       `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=9`,
-//       options
-//     )
-//   ).json();
 
 const Card: React.FC<Props> = ({
   searchInput,
   filteredResults,
   players,
   handleChange,
+  filteredAllResults,
 }) => {
-  // const [players, setPlayers] = useState([] as PlayerType[]);
-  // const [pageNumber, setPageNumber] = useState(1);
-
-  // const { data, isLoading, error } = useQuery<any>(
-  //   ['players', pageNumber],
-  //   () => getPlayers(pageNumber)
-  // );
-
-  // useEffect(() => {
-  //   setPlayers(data?.data);
-  // });
-
-  // // Function to set page number to number thats clicked for pagination
-  // const handleChange = (e: any, p: any) => {
-  //   console.log(e, p);
-  //   setPageNumber(p);
-  // };
-
   return (
     <main>
       {/* Card section */}

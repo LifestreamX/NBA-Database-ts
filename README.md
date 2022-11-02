@@ -1,9 +1,8 @@
 TODO:
- - Find way to pass data fetched with React Query or other method
- - When clicked go to details using Id
- - use Pagination to fetch different page
- - 
-
+- Finish Filter all component 
+- fix typescript syntax
+- fix anti-patterns duplicate state
+- cosider replacing prop drilling with something else context.. etc. 
 
 
 

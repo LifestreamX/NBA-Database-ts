@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <main className='App'>
-      <Nav />
+      <Nav  />
       {isLoading && (
         <div className='spinner-wrapper'>
           <Spinner />
