@@ -24,15 +24,14 @@ const Card: React.FC<Props> = ({
 }) => {
   console.log(filteredAllResults);
 
+  //  Card section
   return (
-    <main>
-      {/* Card section */}
-
+    <main className='entire-player-wrapper'>
+      {/* When the Search for all button is clicked */}
       {filteredAllResults.length > 0 ? (
         filteredAllResults.map((player: any) => {
           return (
-            <section className='card-wrapper'>
-              <div className='card' key={player.id}>
+              <div className='card card-all-player' key={player.id}>
                 <div className='content'>
                   <div className='font'>
                     <p>First Name: {player.first_name}</p>
@@ -53,16 +52,15 @@ const Card: React.FC<Props> = ({
                   </div>
                 </div>
               </div>
-            </section>
           );
         })
       ) : (
-        <main>
+        <main className='entire-player-wrapper'>
           {searchInput.length > 1 ? (
-            // Filter for only page
+            // Filter for only current page
             filteredResults.map((player: any) => {
               return (
-                <section className='card-wrapper'>
+                <section className='card-wrapper-page-filter'>
                   <div className='card' key={player.id}>
                     <div className='content'>
                       <div className='font'>
@@ -117,8 +115,6 @@ const Card: React.FC<Props> = ({
           )}
         </main>
       )}
-
-
 
       {/* PAGINATION SECTION */}
       <section className='pagination-wrapper'>

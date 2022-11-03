@@ -5,16 +5,36 @@ main {
   height: 100%;
 }
 
+// Wraps entire application
+.entire-player-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.card-wrapper-all-players-filter {
+}
+
+// wrapper for only page filter
+.card-wrapper-page-filter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Card wrapper only for main layout
 .card-wrapper {
   width: 100%;
   position: relative;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  margin-top: 100px !important;
   justify-content: center;
   align-content: center;
-  top: 70px;
+  // background-color: rebeccapurple;
 }
 
 .card {
@@ -25,8 +45,11 @@ main {
   background-color: white;
   justify-content: center;
   align-content: center;
-  margin: 50px;
-  margin-bottom: 150px !important;
+  margin-bottom: 50px;
+}
+
+.card-all-player {
+  margin-top: 100px !important;
 }
 
 .content {
@@ -108,7 +131,6 @@ p {
   .card {
     width: 500px;
     height: 500px;
-    margin-bottom: 250px !important;
   }
 
   .content {
@@ -137,7 +159,14 @@ p {
 
 @media screen and (min-width: 1025px) {
   .card {
-    margin: 140px !important;
     margin-bottom: 250px !important;
+  }
+
+  .card {
+    margin: 50px !important;
+  }
+
+  .card-all-player {
+    margin-top: 150px !important;
   }
 }
