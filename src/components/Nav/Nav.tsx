@@ -4,12 +4,12 @@ import nbalogo from '../../images/nbalogo.webp';
 
 const Nav = () => {
   return (
-    <nav>
+    <header>
       <div className='nav-wrapper'>
         <img src={nbalogo} alt='' />
         <h1> NBA PLAYER DATABASE</h1>
       </div>
-    </nav>
+    </header>
   );
 };
 

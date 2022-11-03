@@ -96,7 +96,6 @@ const Cards: React.FC = () => {
   //   setSearchAllValue(searchValues);
   // };
 
-  console.log(filteredAllResults);
 
   return (
     <main>

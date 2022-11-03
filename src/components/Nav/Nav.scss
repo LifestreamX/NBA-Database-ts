@@ -1,4 +1,4 @@
-nav {
+header {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
-  nav {
+  header {
     .nav-wrapper {
       img {
         width: 120px;
@@ -36,7 +36,7 @@ nav {
 }
 
 @media screen and (min-width: 1025px) {
-  nav {
+  header {
     .nav-wrapper {
       img {
         top: 20px;

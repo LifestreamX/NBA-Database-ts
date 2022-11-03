@@ -37,7 +37,6 @@ const SearchAllPlayers: React.FC<Props> = ({
   //   When Search Button is clicked
   const HandlePlayerSearch = (e: any) => {
     e.preventDefault();
-    let comparedData;
 
     fetch(
       `https://free-nba.p.rapidapi.com/players?page=0&search=${searchAllValue}`,
@@ -60,22 +59,6 @@ const SearchAllPlayers: React.FC<Props> = ({
         )
       )
       .catch((err) => console.error(err));
-
-
-    // console.log(filteredAllResults);
-
-    //   Compares the search input for first name or last name to the data base for exact name match
-    // const comparedData = filterData?.filter((player: any) => {
-    //   return (
-    //     player.first_name.toLowerCase() ===
-    //       searchAllValue.toLowerCase().replace(/\s/g, '') ||
-    //     player.last_name.toLowerCase() ===
-    //       searchAllValue.toLowerCase().replace(/\s/g, '') ||
-    //     player.first_name.toLowerCase() + player.last_name.toLowerCase() ==
-    //       searchAllValue.toLowerCase().replace(/\s/g, '')
-    //   );
-    // });
-    // setFilteredAllResults(filterData);
   };
 
   return (

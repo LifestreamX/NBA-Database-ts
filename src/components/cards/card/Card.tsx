@@ -22,12 +22,14 @@ const Card: React.FC<Props> = ({
   handleChange,
   filteredAllResults,
 }) => {
+  console.log(filteredAllResults);
+
   return (
     <main>
       {/* Card section */}
 
-      {searchInput.length > 1 ? (
-        filteredResults.map((player: any) => {
+      {filteredAllResults.length > 0 ? (
+        filteredAllResults.map((player: any) => {
           return (
             <section className='card-wrapper'>
               <div className='card' key={player.id}>
@@ -55,32 +57,68 @@ const Card: React.FC<Props> = ({
           );
         })
       ) : (
-        <section className='card-wrapper'>
-          {players?.map((player: any) => (
-            <div className='card' key={player.id}>
-              <div className='content'>
-                <div className='font'>
-                  <p>First Name: {player.first_name}</p>
-                  <p>Last Name: {player.last_name}</p>
+        <main>
+          {searchInput.length > 1 ? (
+            // Filter for only page
+            filteredResults.map((player: any) => {
+              return (
+                <section className='card-wrapper'>
+                  <div className='card' key={player.id}>
+                    <div className='content'>
+                      <div className='font'>
+                        <p>First Name: {player.first_name}</p>
+                        <p>Last Name: {player.last_name}</p>
 
-                  <p>
-                    Position: {player.position !== '' && player.position}{' '}
-                    {player.position === '' && 'N/A'}
-                  </p>
-                </div>
-                <div className='back'>
-                  <p>
-                    Team: {player.team.city} {player.team.name}
-                  </p>
-                  <p>Conference: {player.team.conference}</p>
+                        <p>
+                          Position: {player.position !== '' && player.position}{' '}
+                          {player.position === '' && 'N/A'}
+                        </p>
+                      </div>
+                      <div className='back'>
+                        <p>
+                          Team: {player.team.city} {player.team.name}
+                        </p>
+                        <p>Conference: {player.team.conference}</p>
 
-                  <p>Division: {player.team.division}</p>
+                        <p>Division: {player.team.division}</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              );
+            })
+          ) : (
+            // Default layout no filter
+            <section className='card-wrapper'>
+              {players?.map((player: any) => (
+                <div className='card' key={player.id}>
+                  <div className='content'>
+                    <div className='font'>
+                      <p>First Name: {player.first_name}</p>
+                      <p>Last Name: {player.last_name}</p>
+
+                      <p>
+                        Position: {player.position !== '' && player.position}{' '}
+                        {player.position === '' && 'N/A'}
+                      </p>
+                    </div>
+                    <div className='back'>
+                      <p>
+                        Team: {player.team.city} {player.team.name}
+                      </p>
+                      <p>Conference: {player.team.conference}</p>
+
+                      <p>Division: {player.team.division}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </section>
+              ))}
+            </section>
+          )}
+        </main>
       )}
+
+
 
       {/* PAGINATION SECTION */}
       <section className='pagination-wrapper'>
