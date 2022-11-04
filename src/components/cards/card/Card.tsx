@@ -31,31 +31,31 @@ const Card: React.FC<Props> = ({
       {filteredAllResults.length > 0 ? (
         filteredAllResults.map((player: any) => {
           return (
-              <div className='card card-all-player' key={player.id}>
-                <div className='content'>
-                  <div className='font'>
-                    <p>First Name: {player.first_name}</p>
-                    <p>Last Name: {player.last_name}</p>
+            <div className='card  card-all-player' key={player.id}>
+              <div className='content'>
+                <div className='font'>
+                  <p>First Name: {player.first_name}</p>
+                  <p>Last Name: {player.last_name}</p>
 
-                    <p>
-                      Position: {player.position !== '' && player.position}{' '}
-                      {player.position === '' && 'N/A'}
-                    </p>
-                  </div>
-                  <div className='back'>
-                    <p>
-                      Team: {player.team.city} {player.team.name}
-                    </p>
-                    <p>Conference: {player.team.conference}</p>
+                  <p>
+                    Position: {player.position !== '' && player.position}{' '}
+                    {player.position === '' && 'N/A'}
+                  </p>
+                </div>
+                <div className='back'>
+                  <p>
+                    Team: {player.team.city} {player.team.name}
+                  </p>
+                  <p>Conference: {player.team.conference}</p>
 
-                    <p>Division: {player.team.division}</p>
-                  </div>
+                  <p>Division: {player.team.division}</p>
                 </div>
               </div>
+            </div>
           );
         })
       ) : (
-        <main className='entire-player-wrapper'>
+        <main>
           {searchInput.length > 1 ? (
             // Filter for only current page
             filteredResults.map((player: any) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import './SearchAllPlayers.scss';
+import Alert from '@mui/material/Alert';
 
 type Props = {
   //   searchingForAllPlayers: (val: any) => void;
@@ -61,10 +62,22 @@ const SearchAllPlayers: React.FC<Props> = ({
       .catch((err) => console.error(err));
   };
 
+  console.log(filteredAllResults.length);
   return (
     <form className='search-all-wrapper'>
       <div className='section-wrapper'>
         <h1 className='search-all-title'>Search All Players</h1>
+        {filteredAllResults.length < 1 && (
+          <Alert
+            // color='warning'
+            className='warning'
+            // icon={false}
+            variant='filled'
+            severity='warning'
+          >
+            Not A Match, Try again
+          </Alert>
+        )}
         <div className='input-label-wrapper'>
           <label htmlFor='' className='label-name'>
             Name:

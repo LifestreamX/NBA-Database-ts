@@ -96,7 +96,6 @@ const Cards: React.FC = () => {
   //   setSearchAllValue(searchValues);
   // };
 
-
   return (
     <main>
       <SearchPlayer
@@ -111,13 +110,16 @@ const Cards: React.FC = () => {
         setFilteredAllResults={setFilteredAllResults}
         filteredAllResults={filteredAllResults}
       />
-      <Card
-        searchInput={searchInput}
-        filteredResults={filteredResults}
-        players={players}
-        handleChange={handleChange}
-        filteredAllResults={filteredAllResults}
-      />
+
+      <main className='card-component-wrapper'>
+        <Card
+          searchInput={searchInput}
+          filteredResults={filteredResults}
+          players={players}
+          handleChange={handleChange}
+          filteredAllResults={filteredAllResults}
+        />
+      </main>
     </main>
   );
 };
