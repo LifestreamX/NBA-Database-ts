@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 // import { getPlayers } from '../../API';
-import { useQuery } from 'react-query';
 import './Card.scss';
-import ReactPaginate from 'react-paginate';
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import SearchPlayer from '../../search/SearchPlayer';
+
 
 type Props = {
   searchInput: any;
@@ -22,7 +19,7 @@ const Card: React.FC<Props> = ({
   handleChange,
   filteredAllResults,
 }) => {
-  console.log(filteredAllResults);
+  // console.log(filteredAllResults);
 
   //  Card section
   return (

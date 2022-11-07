@@ -1,9 +1,11 @@
 TODO:
-- Finish Filter all component 
+- fix mobile responsive
 - fix typescript syntax
 - fix anti-patterns duplicate state
 - cosider replacing prop drilling with something else context.. etc. 
-
+- fix redundance usestate
+- Replace prop drilling with COntext
+- look into other hooks to use to replace 
 
 
 

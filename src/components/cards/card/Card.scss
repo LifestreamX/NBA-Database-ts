@@ -7,15 +7,11 @@ main {
 
 // Wraps entire application
 .entire-player-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
   justify-content: center;
   margin-top: 150px;
-}
-
-// Wrapper for all filter
-.card-all-player {
 }
 
 // wrapper for only page filter
@@ -125,6 +121,12 @@ p {
 
 // Responsiveness for Tablets and bigger
 @media screen and (min-width: 768px) {
+  .entire-player-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
   .card {
     width: 420px;
     height: 420px;

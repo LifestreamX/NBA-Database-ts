@@ -60,21 +60,21 @@ const SearchAllPlayers: React.FC<Props> = ({
         )
       )
       .catch((err) => console.error(err));
-  };
 
-  console.log(filteredAllResults.length);
+      if(searchAllValue == 0){
+         console.log(' PLease enter name')
+      }
+
+    };
+    console.log(searchAllValue.length);
+
   return (
     <form className='search-all-wrapper'>
       <div className='section-wrapper'>
-        <h1 className='search-all-title'>Search All Players</h1>
-        {filteredAllResults.length < 1 && (
-          <Alert
-            // color='warning'
-            className='warning'
-            // icon={false}
-            variant='filled'
-            severity='warning'
-          >
+        <h1 className='search-all-title'>SEARCH ALL PLAYERS</h1>
+        {/* If there is no match for all users */}
+        {filteredAllResults.length < 1 && filteredAllResults && (
+          <Alert className='warning' variant='filled' severity='warning'>
             Not A Match, Try again
           </Alert>
         )}
@@ -89,7 +89,7 @@ const SearchAllPlayers: React.FC<Props> = ({
           />
         </div>
 
-        <button onClick={HandlePlayerSearch} className='search-all-button'>
+        <button onClick={HandlePlayerSearch} disabled={searchAllValue == 0 } className='search-all-button'>
           Search
         </button>
       </div>
