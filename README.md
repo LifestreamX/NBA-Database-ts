@@ -1,5 +1,4 @@
 TODO:
-- fix mobile responsive
 - fix typescript syntax
 - fix anti-patterns duplicate state
 - cosider replacing prop drilling with something else context.. etc. 

@@ -2,29 +2,57 @@ import React, { useEffect, useState } from 'react';
 // import { getPlayers } from '../../API';
 import './Card.scss';
 import Pagination from '@mui/material/Pagination';
-
+import { useQuery } from 'react-query';
+import { getPlayers } from '../Cards';
 
 type Props = {
-  searchInput: any;
+  searchInput: string;
   filteredResults: any;
-  players: any;
+  // players: any;
   handleChange: any;
   filteredAllResults: any;
+  pageNumber: any;
 };
 
 const Card: React.FC<Props> = ({
   searchInput,
   filteredResults,
-  players,
+  // players,
   handleChange,
   filteredAllResults,
+  pageNumber,
 }) => {
-  // console.log(filteredAllResults);
+  // Grabbing API data with useQuery
+  const { data } = useQuery<any>(['players', pageNumber], () =>
+    getPlayers(pageNumber)
+  );
+
+  let players = data?.data;
+
+  
+  const [firstNameSortToggle, setFirstNameSortToggle] = useState(false);
+
+  // Sort players on current page by first name
+
+  const handleSortByFirstName = () => {
+    players?.sort(function (a: any, b: any) {
+      var nameA = a.first_name.toLowerCase(),
+        nameB = b.first_name.toLowerCase();
+      if (nameA < nameB)
+        //sort string ascending
+        return -1;
+      if (nameA > nameB) return 1;
+      return 0; //default return value (no sorting)
+    });
+
+    setFirstNameSortToggle(!firstNameSortToggle);
+  };
 
   //  Card section
   return (
     <main className='entire-player-wrapper'>
-      {/* When the Search for all button is clicked */}
+      <button onClick={handleSortByFirstName}>SOrt</button>
+      {/* When the Search for all players button is clicked */}
       {filteredAllResults.length > 0 ? (
         filteredAllResults.map((player: any) => {
           return (

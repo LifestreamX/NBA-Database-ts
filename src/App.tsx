@@ -13,6 +13,8 @@ import Cards, { getPlayers } from './components/cards/Cards';
 const App = () => {
   const { isLoading } = useQuery<any>(['players'], getPlayers);
 
+
+
   // console.log(isLoading);
 
   return (

@@ -61,12 +61,9 @@ const SearchAllPlayers: React.FC<Props> = ({
       )
       .catch((err) => console.error(err));
 
-      if(searchAllValue == 0){
-         console.log(' PLease enter name')
-      }
+   
 
     };
-    console.log(searchAllValue.length);
 
   return (
     <form className='search-all-wrapper'>

@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 
 import './Cards.scss';
 import SearchAllPlayers from '../searchAllPlayers/SearchAllPlayers';
+import SortMenu from '../sortmenu/SortMenu';
 
 // TYPES SECTION
 export type PlayerType = {
@@ -48,7 +49,7 @@ export const getPlayers = async (pageNumber: any): Promise<dataType> =>
   ).json();
 
 const Cards: React.FC = () => {
-  const [players, setPlayers] = useState([] as PlayerType[]);
+  // const [players, setPlayers] = useState([] as PlayerType[]);
   const [pageNumber, setPageNumber] = useState(1);
 
   // Filter state
@@ -64,13 +65,15 @@ const Cards: React.FC = () => {
     () => getPlayers(pageNumber)
   );
 
-  useEffect(() => {
-    setPlayers(data?.data);
-  });
+  // console.log(data?.data);
+
+  // useEffect(() => {
+  //   setPlayers(data?.data);
+  // },);
 
   // Function to set page number to number thats clicked for pagination
   const handleChange = (e: any, p: any) => {
-    console.log(e, p);
+    // console.log(e, p);
     setPageNumber(p);
   };
 
@@ -91,13 +94,9 @@ const Cards: React.FC = () => {
     } else setFilteredResults(data?.data);
   };
 
-  // // FILTER FOR ALL PLAYERS
-  // const searchingForAllPlayers = (searchValues: string) => {
-  //   setSearchAllValue(searchValues);
-  // };
-
   return (
     <main>
+      <SortMenu />
       <SearchPlayer
         searchInput={searchInput}
         setSearchInput={setSearchInput}
@@ -113,9 +112,10 @@ const Cards: React.FC = () => {
 
       <main className='card-component-wrapper'>
         <Card
+          pageNumber={pageNumber}
           searchInput={searchInput}
           filteredResults={filteredResults}
-          players={players}
+          // players={players}
           handleChange={handleChange}
           filteredAllResults={filteredAllResults}
         />
