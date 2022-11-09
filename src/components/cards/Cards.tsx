@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import './Cards.scss';
 import SearchAllPlayers from '../searchAllPlayers/SearchAllPlayers';
 import SortMenu from '../sortmenu/SortMenu';
+import Basketball from '../basketball/Basketball';
 
 // TYPES SECTION
 export type PlayerType = {
@@ -43,7 +44,7 @@ const options = {
 export const getPlayers = async (pageNumber: any): Promise<dataType> =>
   await (
     await fetch(
-      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=8`,
+      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=6`,
       options
     )
   ).json();

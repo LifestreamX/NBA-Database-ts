@@ -60,9 +60,6 @@
       width: 100%;
     }
 
-  
-
-
     .search-all-button:hover {
       background: #105c88;
     }
@@ -70,47 +67,62 @@
 }
 
 @media screen and (min-width: 768px) {
-  .search-all-wrapper {
-    right: 30px;
-    z-index: 99;
+  .search-all {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 100px;
-    margin-bottom: -100px;
 
-    .section-wrapper {
+    .left-ball {
+      position: relative;
+      left: 33% !important;
+    }
+
+    .right-ball {
+      position: relative;
+      right: 33% !important;
+    }
+
+    .search-all-wrapper {
+      right: 30px;
+      z-index: 99;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      margin-top: 100px;
+      margin-bottom: -100px;
 
-      .input-label-wrapper {
+      .section-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .search-all-title {
-          font-size: 18px;
+        .input-label-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .search-all-title {
+            font-size: 18px;
+          }
         }
-      }
 
-      .label-name {
-        font-size: 20px;
-      }
+        .label-name {
+          font-size: 20px;
+        }
 
-      .label-input {
-        padding: 12px;
-        font-size: 20px;
-      }
+        .label-input {
+          padding: 12px;
+          font-size: 20px;
+        }
 
-      .search-all-button {
-        padding: 20px !important;
-        font-size: 24px;
-        cursor: pointer;
+        .search-all-button {
+          padding: 20px !important;
+          font-size: 24px;
+          cursor: pointer;
+        }
       }
     }
   }

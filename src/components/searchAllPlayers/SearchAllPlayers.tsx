@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import './SearchAllPlayers.scss';
 import Alert from '@mui/material/Alert';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
+import Basketball from '../basketball/Basketball';
 
 type Props = {
   //   searchingForAllPlayers: (val: any) => void;
@@ -60,37 +62,57 @@ const SearchAllPlayers: React.FC<Props> = ({
         )
       )
       .catch((err) => console.error(err));
+  };
 
-   
-
-    };
+  const styles: any = {
+    disableTheme: {
+      background: !searchAllValue && '#105c889d',
+    },
+  };
 
   return (
-    <form className='search-all-wrapper'>
-      <div className='section-wrapper'>
-        <h1 className='search-all-title'>SEARCH ALL PLAYERS</h1>
-        {/* If there is no match for all users */}
-        {filteredAllResults.length < 1 && filteredAllResults && (
-          <Alert className='warning' variant='filled' severity='warning'>
-            Not A Match, Try again
-          </Alert>
-        )}
-        <div className='input-label-wrapper'>
-          <label htmlFor='' className='label-name'>
-            Name:
-          </label>
-          <input
-            type='text'
-            className='label-input'
-            onChange={(e) => setSearchAllValue(e.target.value)}
-          />
-        </div>
-
-        <button onClick={HandlePlayerSearch} disabled={searchAllValue == 0 } className='search-all-button'>
-          Search
-        </button>
+    <main className='search-all'>
+      <div className='left-ball'>
+        <Basketball />
       </div>
-    </form>
+      <form className='search-all-wrapper'>
+        <div className='section-wrapper'>
+          <h1 className='search-all-title'>SEARCH ALL PLAYERS</h1>
+          {/* If there is no match for all users */}
+          {filteredAllResults.length < 1 && filteredAllResults && (
+            <Alert className='warning' variant='filled' severity='warning'>
+              Not A Match, Try again
+            </Alert>
+          )}
+
+          {/* {filteredAllResults.length === 0 && console.log('Please Enter naame')} */}
+          <div className='input-label-wrapper'>
+            <label htmlFor='' className='label-name'>
+              Name:
+            </label>
+            <input
+              required
+              type='text'
+              className='label-input'
+              onChange={(e) => setSearchAllValue(e.target.value)}
+            />
+          </div>
+
+          <button
+            style={styles.disableTheme}
+            disabled={!searchAllValue}
+            onClick={HandlePlayerSearch}
+            // disabled={searchAllValue == 0}
+            className='search-all-button'
+          >
+            Search
+          </button>
+        </div>
+      </form>
+      <div className='right-ball'>
+        <Basketball />
+      </div>
+    </main>
   );
 };
 
