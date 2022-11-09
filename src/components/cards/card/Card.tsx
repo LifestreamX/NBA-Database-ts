@@ -27,31 +27,12 @@ const Card: React.FC<Props> = ({
     getPlayers(pageNumber)
   );
 
-  let players = data?.data;
 
-  
-  const [firstNameSortToggle, setFirstNameSortToggle] = useState(false);
 
-  // Sort players on current page by first name
-
-  const handleSortByFirstName = () => {
-    players?.sort(function (a: any, b: any) {
-      var nameA = a.first_name.toLowerCase(),
-        nameB = b.first_name.toLowerCase();
-      if (nameA < nameB)
-        //sort string ascending
-        return -1;
-      if (nameA > nameB) return 1;
-      return 0; //default return value (no sorting)
-    });
-
-    setFirstNameSortToggle(!firstNameSortToggle);
-  };
 
   //  Card section
   return (
     <main className='entire-player-wrapper'>
-      <button onClick={handleSortByFirstName}>SOrt</button>
       {/* When the Search for all players button is clicked */}
       {filteredAllResults.length > 0 ? (
         filteredAllResults.map((player: any) => {
@@ -113,7 +94,7 @@ const Card: React.FC<Props> = ({
           ) : (
             // Default layout no filter
             <section className='card-wrapper'>
-              {players?.map((player: any) => (
+              {data?.data.map((player: any) => (
                 <div className='card' key={player.id}>
                   <div className='content'>
                     <div className='font'>

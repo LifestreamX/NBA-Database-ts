@@ -43,7 +43,7 @@ const options = {
 export const getPlayers = async (pageNumber: any): Promise<dataType> =>
   await (
     await fetch(
-      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=9`,
+      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=8`,
       options
     )
   ).json();
@@ -60,16 +60,13 @@ const Cards: React.FC = () => {
   const [searchAllValue, setSearchAllValue] = useState('');
   const [filteredAllResults, setFilteredAllResults] = useState('');
 
+  // Sort State
+  const [sortedData, setSortedData] = useState(false);
+
   const { data, isLoading, error } = useQuery<any>(
     ['players', pageNumber],
     () => getPlayers(pageNumber)
   );
-
-  // console.log(data?.data);
-
-  // useEffect(() => {
-  //   setPlayers(data?.data);
-  // },);
 
   // Function to set page number to number thats clicked for pagination
   const handleChange = (e: any, p: any) => {
@@ -94,9 +91,42 @@ const Cards: React.FC = () => {
     } else setFilteredResults(data?.data);
   };
 
+  // Sort players on current page by first name
+  const handleSortByFirstName = () => {
+    setSortedData(!sortedData);
+    data?.data.sort(function (a: any, b: any) {
+      var nameA = a.first_name.toLowerCase(),
+        nameB = b.first_name.toLowerCase();
+      if (nameA < nameB)
+        //sort string ascending
+        return -1;
+      if (nameA > nameB) return 1;
+      return 0; //default return value (no sorting)
+    });
+    return;
+  };
+
+  // Sort players on current page by last name
+  const handleSortByLastName = () => {
+    setSortedData(!sortedData);
+    data?.data.sort(function (a: any, b: any) {
+      var nameA = a.last_name.toLowerCase(),
+        nameB = b.last_name.toLowerCase();
+      if (nameA < nameB)
+        //sort string ascending
+        return -1;
+      if (nameA > nameB) return 1;
+      return 0; //default return value (no sorting)
+    });
+    return;
+  };
+
   return (
     <main>
-      <SortMenu />
+      <SortMenu
+        handleSortByFirstName={handleSortByFirstName}
+        handleSortByLastName={handleSortByLastName}
+      />
       <SearchPlayer
         searchInput={searchInput}
         setSearchInput={setSearchInput}

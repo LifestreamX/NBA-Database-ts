@@ -6,6 +6,11 @@ import MenuItem from '@mui/material/MenuItem';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './SortMenu.scss';
 
+type Props = {
+  handleSortByFirstName: () => any;
+  handleSortByLastName: () => any;
+};
+
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -49,7 +54,10 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-export default function SortMenu() {
+const SortMenu: React.FC<Props> = ({
+  handleSortByFirstName,
+  handleSortByLastName,
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -82,14 +90,29 @@ export default function SortMenu() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            handleSortByFirstName();
+          }}
+          disableRipple
+        >
           By First Name
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            handleSortByLastName();
+          }}
+          disableRipple
+          className='labels'
+        >
           By Last Name
         </MenuItem>
         {/* <Divider sx={{ my: 0.5 }} /> */}
       </StyledMenu>
     </div>
   );
-}
+};
+
+export default SortMenu;

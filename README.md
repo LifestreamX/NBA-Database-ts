@@ -4,7 +4,7 @@ TODO:
 - cosider replacing prop drilling with something else context.. etc. 
 - fix redundance usestate
 - Replace prop drilling with COntext
-- look into other hooks to use to replace 
+- look into other hooks to use to replace refactor etc.
 
 
 
