@@ -1,4 +1,7 @@
-export type PlayerType = {
+
+
+// TYPES SECTION
+export interface PlayerType {
   first_name: string;
   height_feet: number;
   height_inches: number;
@@ -6,4 +9,5 @@ export type PlayerType = {
   last_name: string;
   position: string;
   weight_pounds: number;
-};
+  team: any;
+}

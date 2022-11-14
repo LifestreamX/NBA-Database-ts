@@ -3,32 +3,11 @@ import SearchPlayer from '../search/SearchPlayer';
 import Card from './card/Card';
 // import Card, { getPlayers } from './card/Card';
 import { useQuery } from 'react-query';
-
 import './Cards.scss';
 import SearchAllPlayers from '../searchAllPlayers/SearchAllPlayers';
 import SortMenu from '../sortmenu/SortMenu';
 import Basketball from '../basketball/Basketball';
-
-// TYPES SECTION
-export type PlayerType = {
-  first_name: string;
-  height_feet: number;
-  height_inches: number;
-  id: number;
-  last_name: string;
-  position: string;
-  weight_pounds: number;
-  team: any;
-};
-
-export type dataType = {
-  data: any;
-};
-
-// type Props = {
-//   searchInput: any;
-//   filteredResults: any;
-// };
+import { PlayerType } from '../../types/Players.types';
 
 // API LOGIC
 const options = {
@@ -41,7 +20,7 @@ const options = {
   },
 };
 
-export const getPlayers = async (pageNumber: any): Promise<dataType> =>
+export const getPlayers = async (pageNumber: any): Promise<any> =>
   await (
     await fetch(
       `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=6`,
@@ -50,27 +29,27 @@ export const getPlayers = async (pageNumber: any): Promise<dataType> =>
   ).json();
 
 const Cards: React.FC = () => {
-  // const [players, setPlayers] = useState([] as PlayerType[]);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
   // Filter state
-  const [searchInput, setSearchInput] = useState('');
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState<string>('');
+  const [filteredResults, setFilteredResults] = useState<Array<object>>();
 
   // Filter all state
-  const [searchAllValue, setSearchAllValue] = useState('');
-  const [filteredAllResults, setFilteredAllResults] = useState('');
+  const [searchAllValue, setSearchAllValue] = useState<string>('');
+  const [filteredAllResults, setFilteredAllResults] = useState<string>('');
+
 
   // Sort State
-  const [sortedData, setSortedData] = useState(false);
-
-  const { data, isLoading, error } = useQuery<any>(
-    ['players', pageNumber],
-    () => getPlayers(pageNumber)
+  const [sortedData, setSortedData] = useState<boolean>(false);
+  const { data, isLoading, error } = useQuery(['players', pageNumber], () =>
+    getPlayers(pageNumber)
   );
 
+  const PlayerData: Array<PlayerType> = data?.data;
+
   // Function to set page number to number thats clicked for pagination
-  const handleChange = (e: any, p: any) => {
+  const handleChange = (e: any, p: number) => {
     // console.log(e, p);
     setPageNumber(p);
   };
@@ -80,7 +59,7 @@ const Cards: React.FC = () => {
     setSearchInput(searchValue);
 
     if (searchInput !== '') {
-      const filteredData = data?.data?.filter((player: any) => {
+      const filteredData = PlayerData.filter((player: any) => {
         return (
           player.first_name.toLowerCase().includes(searchInput.toLowerCase()) ||
           player.last_name.toLowerCase().includes(searchInput.toLowerCase())
@@ -88,16 +67,17 @@ const Cards: React.FC = () => {
       });
 
       setFilteredResults(filteredData);
+
       console.log(filteredResults);
-    } else setFilteredResults(data?.data);
+    } else setFilteredResults(PlayerData);
   };
 
   // Sort players on current page by first name
   const handleSortByFirstName = () => {
     setSortedData(!sortedData);
-    data?.data.sort(function (a: any, b: any) {
-      var nameA = a.first_name.toLowerCase(),
-        nameB = b.first_name.toLowerCase();
+    PlayerData.sort(function (a: any, b: any) {
+      var nameA: string = a.first_name.toLowerCase(),
+        nameB: string = b.first_name.toLowerCase();
       if (nameA < nameB)
         //sort string ascending
         return -1;
@@ -110,9 +90,9 @@ const Cards: React.FC = () => {
   // Sort players on current page by last name
   const handleSortByLastName = () => {
     setSortedData(!sortedData);
-    data?.data.sort(function (a: any, b: any) {
-      var nameA = a.last_name.toLowerCase(),
-        nameB = b.last_name.toLowerCase();
+    PlayerData.sort(function (a: any, b: any) {
+      var nameA: string = a.last_name.toLowerCase(),
+        nameB: string = b.last_name.toLowerCase();
       if (nameA < nameB)
         //sort string ascending
         return -1;
@@ -133,13 +113,16 @@ const Cards: React.FC = () => {
         setSearchInput={setSearchInput}
         SearchPlayers={SearchPlayers}
       />
-      <SearchAllPlayers
-        searchAllValue={searchAllValue}
-        setSearchAllValue={setSearchAllValue}
-        // searchingForAllPlayers={searchingForAllPlayers}
-        setFilteredAllResults={setFilteredAllResults}
-        filteredAllResults={filteredAllResults}
-      />
+
+      {!isLoading && (
+        <SearchAllPlayers
+          searchAllValue={searchAllValue}
+          setSearchAllValue={setSearchAllValue}
+          // searchingForAllPlayers={searchingForAllPlayers}
+          setFilteredAllResults={setFilteredAllResults}
+          filteredAllResults={filteredAllResults}
+        />
+      )}
 
       <main className='card-component-wrapper'>
         <Card

@@ -7,27 +7,20 @@ import Spinner from './components/Nav/spinner/Spinner';
 // import { getPlayers } from './components/API';
 import Cards, { getPlayers } from './components/cards/Cards';
 // import { getPlayers } from './components/cards/card/Card';
-
-
+import Pagination from '@mui/material/Pagination';
 
 const App = () => {
   const { isLoading } = useQuery<any>(['players'], getPlayers);
 
-
-
-  // console.log(isLoading);
-
   return (
     <main className='App'>
-      
-      <Nav  />
+      <Nav />
       {isLoading && (
         <div className='spinner-wrapper'>
           <Spinner />
         </div>
       )}
       <Cards />
- 
     </main>
   );
 };

@@ -1,14 +1,9 @@
-// body {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     height:100vh;
-//   }
-  
+
   .basketball {
     position: relative;
     top: 200px;
     left:-50px;
+    z-index: -99;
   }
   
   .ball {

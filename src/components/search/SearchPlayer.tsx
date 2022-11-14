@@ -13,7 +13,6 @@ const SearchPlayer: React.FC<Props> = ({
   setSearchInput,
   SearchPlayers,
 }) => {
-  // console.log(searchInput);
   return (
     <div className='search'>
       <SearchIcon className='search-icon' />

@@ -64,14 +64,20 @@ const SearchAllPlayers: React.FC<Props> = ({
       .catch((err) => console.error(err));
   };
 
+  // Styles for button if no input has been types
   const styles: any = {
     disableTheme: {
       background: !searchAllValue && '#105c889d',
     },
   };
 
+  // Handle reset
+  const handleReset = () => {
+    setFilteredAllResults({});
+  };
+
   return (
-    <main className='search-all'>
+    <div className='search-all'>
       <div className='left-ball'>
         <Basketball />
       </div>
@@ -85,7 +91,6 @@ const SearchAllPlayers: React.FC<Props> = ({
             </Alert>
           )}
 
-          {/* {filteredAllResults.length === 0 && console.log('Please Enter naame')} */}
           <div className='input-label-wrapper'>
             <label htmlFor='' className='label-name'>
               Name:
@@ -107,12 +112,15 @@ const SearchAllPlayers: React.FC<Props> = ({
           >
             Search
           </button>
+          <button className='search-all-button' onClick={handleReset}>
+            Reset
+          </button>
         </div>
       </form>
       <div className='right-ball'>
         <Basketball />
       </div>
-    </main>
+    </div>
   );
 };
 

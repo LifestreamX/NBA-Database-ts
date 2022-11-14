@@ -8,26 +8,22 @@ import { getPlayers } from '../Cards';
 type Props = {
   searchInput: string;
   filteredResults: any;
-  // players: any;
   handleChange: any;
   filteredAllResults: any;
-  pageNumber: any;
+  pageNumber: number;
 };
 
 const Card: React.FC<Props> = ({
   searchInput,
   filteredResults,
-  // players,
   handleChange,
   filteredAllResults,
   pageNumber,
 }) => {
   // Grabbing API data with useQuery
-  const { data } = useQuery<any>(['players', pageNumber], () =>
+  const { data, isLoading } = useQuery(['players', pageNumber], () =>
     getPlayers(pageNumber)
   );
-
-
 
 
   //  Card section
@@ -35,7 +31,7 @@ const Card: React.FC<Props> = ({
     <main className='entire-player-wrapper'>
       {/* When the Search for all players button is clicked */}
       {filteredAllResults.length > 0 ? (
-        filteredAllResults.map((player: any) => {
+        filteredAllResults?.map((player: any) => {
           return (
             <div className='card  card-all-player' key={player.id}>
               <div className='content'>
@@ -124,13 +120,15 @@ const Card: React.FC<Props> = ({
 
       {/* PAGINATION SECTION */}
       <section className='pagination-wrapper'>
-        <Pagination
-          count={11}
-          color='primary'
-          onChange={handleChange}
-          className='pagi'
-          sx={{ fontSize: '4rem' }}
-        />
+        {!isLoading && (
+          <Pagination
+            count={11}
+            color='primary'
+            onChange={handleChange}
+            className='pagi'
+            sx={{ fontSize: '4rem' }}
+          />
+        )}
       </section>
     </main>
   );
