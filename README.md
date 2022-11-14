@@ -13,7 +13,7 @@ NBA Database
 
 ## Screenshots
 
-![](screenshots/screenshot.png)
+![](screenshots/nba-national-basketball-association.cdr)
 
 
 ## Technologies
