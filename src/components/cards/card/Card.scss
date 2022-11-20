@@ -33,6 +33,13 @@ main {
   // background-color: rebeccapurple;
 }
 
+.card-all-player-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   position: relative;
   width: 85%;
