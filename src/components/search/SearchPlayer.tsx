@@ -8,6 +8,8 @@ type Props = {
   SearchPlayers: (val: any) => void;
 };
 
+
+
 const SearchPlayer: React.FC<Props> = ({
   searchInput,
   setSearchInput,

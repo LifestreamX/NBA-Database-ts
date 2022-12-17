@@ -11,6 +11,7 @@ type Props = {
   setFilteredAllResults: any;
   setSearchAllValue: any;
   filteredAllResults: any;
+  pageNumber: number;
 };
 
 export type dataType = {
@@ -34,6 +35,7 @@ const SearchAllPlayers: React.FC<Props> = ({
   setFilteredAllResults,
   setSearchAllValue,
   filteredAllResults,
+  pageNumber,
 }) => {
   let [filterData, setFilterData] = useState<any>();
 
@@ -42,7 +44,7 @@ const SearchAllPlayers: React.FC<Props> = ({
     e.preventDefault();
 
     fetch(
-      `https://free-nba.p.rapidapi.com/players?page=0&search=${searchAllValue}`,
+      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&search=${searchAllValue}`,
       options
     )
       .then((response) => response.json())
@@ -83,7 +85,6 @@ const SearchAllPlayers: React.FC<Props> = ({
       </div>
       <form className='search-all-wrapper'>
         <div className='section-wrapper'>
-          <h1 className='search-all-title'>SEARCH ALL PLAYERS</h1>
           {/* If there is no match for all users */}
           {filteredAllResults.length < 1 && filteredAllResults && (
             <Alert className='warning' variant='filled' severity='warning'>

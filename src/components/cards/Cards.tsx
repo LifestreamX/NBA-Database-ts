@@ -23,7 +23,7 @@ const options = {
 export const getPlayers = async (pageNumber: any): Promise<any> =>
   await (
     await fetch(
-      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=6`,
+      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&per_page=12`,
       options
     )
   ).json();
@@ -39,12 +39,21 @@ const Cards: React.FC = () => {
   const [searchAllValue, setSearchAllValue] = useState<string>('');
   const [filteredAllResults, setFilteredAllResults] = useState<string>('');
 
-
   // Sort State
   const [sortedData, setSortedData] = useState<boolean>(false);
+
+  // Pagination pages
+  const [totalPages, setTotalPages] = useState<any>();
+
   const { data, isLoading, error } = useQuery(['players', pageNumber], () =>
     getPlayers(pageNumber)
   );
+
+  useEffect(() => {
+    setTotalPages(data?.meta?.total_pages);
+  }, [data?.meta?.total_pages]);
+
+  console.log(totalPages);
 
   const PlayerData: Array<PlayerType> = data?.data;
 
@@ -108,11 +117,11 @@ const Cards: React.FC = () => {
         handleSortByFirstName={handleSortByFirstName}
         handleSortByLastName={handleSortByLastName}
       />
-      <SearchPlayer
+      {/* <SearchPlayer
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         SearchPlayers={SearchPlayers}
-      />
+      /> */}
 
       {!isLoading && (
         <SearchAllPlayers
@@ -121,6 +130,7 @@ const Cards: React.FC = () => {
           // searchingForAllPlayers={searchingForAllPlayers}
           setFilteredAllResults={setFilteredAllResults}
           filteredAllResults={filteredAllResults}
+          pageNumber={pageNumber}
         />
       )}
 
@@ -132,6 +142,7 @@ const Cards: React.FC = () => {
           // players={players}
           handleChange={handleChange}
           filteredAllResults={filteredAllResults}
+          totalPages={totalPages}
         />
       </main>
     </main>

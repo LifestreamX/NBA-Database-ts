@@ -11,6 +11,7 @@ type Props = {
   handleChange: any;
   filteredAllResults: any;
   pageNumber: number;
+  totalPages: number;
 };
 
 const Card: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Card: React.FC<Props> = ({
   handleChange,
   filteredAllResults,
   pageNumber,
+  totalPages,
 }) => {
   // Grabbing API data with useQuery
   const { data, isLoading } = useQuery(['players', pageNumber], () =>
@@ -59,7 +61,7 @@ const Card: React.FC<Props> = ({
         })
       ) : (
         <main>
-          {searchInput.length > 1 ? (
+          {/* {searchInput.length > 1 ? (
             // Filter for only current page
             filteredResults.map((player: any) => {
               return (
@@ -88,34 +90,34 @@ const Card: React.FC<Props> = ({
                 </section>
               );
             })
-          ) : (
-            // Default layout no filter
-            <section className='card-wrapper'>
-              {data?.data.map((player: any) => (
-                <div className='card' key={player.id}>
-                  <div className='content'>
-                    <div className='font'>
-                      <p>First Name: {player.first_name}</p>
-                      <p>Last Name: {player.last_name}</p>
+          ) : ( */}
+          {/* // Default layout no filter */}
+          <section className='card-wrapper'>
+            {data?.data.map((player: any) => (
+              <div className='card' key={player.id}>
+                <div className='content'>
+                  <div className='font'>
+                    <p>First Name: {player.first_name}</p>
+                    <p>Last Name: {player.last_name}</p>
 
-                      <p>
-                        Position: {player.position !== '' && player.position}{' '}
-                        {player.position === '' && 'N/A'}
-                      </p>
-                    </div>
-                    <div className='back'>
-                      <p>
-                        Team: {player.team.city} {player.team.name}
-                      </p>
-                      <p>Conference: {player.team.conference}</p>
+                    <p>
+                      Position: {player.position !== '' && player.position}{' '}
+                      {player.position === '' && 'N/A'}
+                    </p>
+                  </div>
+                  <div className='back'>
+                    <p>
+                      Team: {player.team.city} {player.team.name}
+                    </p>
+                    <p>Conference: {player.team.conference}</p>
 
-                      <p>Division: {player.team.division}</p>
-                    </div>
+                    <p>Division: {player.team.division}</p>
                   </div>
                 </div>
-              ))}
-            </section>
-          )}
+              </div>
+            ))}
+          </section>
+          {/* )} */}
         </main>
       )}
 
@@ -123,7 +125,7 @@ const Card: React.FC<Props> = ({
       <section className='pagination-wrapper'>
         {!isLoading && (
           <Pagination
-            count={11}
+            count={totalPages}
             color='primary'
             onChange={handleChange}
             className='pagi'
