@@ -4,14 +4,17 @@ import './SearchAllPlayers.scss';
 import Alert from '@mui/material/Alert';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 import Basketball from '../basketball/Basketball';
+import { getFilteredPlayers } from '../players/Cards';
 
 type Props = {
-  //   searchingForAllPlayers: (val: any) => void;
   searchAllValue: any;
   setFilteredAllResults: any;
   setSearchAllValue: any;
   filteredAllResults: any;
   pageNumber: number;
+  setTotalPages: any;
+  setFilteredTotalPages: any;
+  filterPageNumber: any;
 };
 
 export type dataType = {
@@ -35,35 +38,20 @@ const SearchAllPlayers: React.FC<Props> = ({
   setFilteredAllResults,
   setSearchAllValue,
   filteredAllResults,
-  pageNumber,
+  setFilteredTotalPages,
+  filterPageNumber,
 }) => {
-  let [filterData, setFilterData] = useState<any>();
+  const { data, refetch } = useQuery(
+    ['filteredplayers', filterPageNumber, searchAllValue],
+    () => getFilteredPlayers(filterPageNumber, searchAllValue),
+    { enabled: false }
+  );
 
-  //   When Search Button is clicked
-  const HandlePlayerSearch = (e: any) => {
-    e.preventDefault();
+  setFilteredAllResults(data);
 
-    fetch(
-      `https://free-nba.p.rapidapi.com/players?page=${pageNumber}&search=${searchAllValue}`,
-      options
-    )
-      .then((response) => response.json())
-      .then((response) =>
-        setFilteredAllResults(
-          response.data.filter((player: any) => {
-            return (
-              player.first_name.toLowerCase() ===
-                searchAllValue.toLowerCase().replace(/\s/g, '') ||
-              player.last_name.toLowerCase() ===
-                searchAllValue.toLowerCase().replace(/\s/g, '') ||
-              player.first_name.toLowerCase() +
-                player.last_name.toLowerCase() ==
-                searchAllValue.toLowerCase().replace(/\s/g, '')
-            );
-          })
-        )
-      )
-      .catch((err) => console.error(err));
+  setFilteredTotalPages(data?.meta?.total_pages);
+
+  const handlePlayerSearch = (e: any) => {
   };
 
   // Styles for button if no input has been types
@@ -86,7 +74,7 @@ const SearchAllPlayers: React.FC<Props> = ({
       <form className='search-all-wrapper'>
         <div className='section-wrapper'>
           {/* If there is no match for all users */}
-          {filteredAllResults.length < 1 && filteredAllResults && (
+          {filteredAllResults?.data?.length === 0 && filteredAllResults && (
             <Alert className='warning' variant='filled' severity='warning'>
               Not A Match, Try again
             </Alert>
@@ -107,8 +95,11 @@ const SearchAllPlayers: React.FC<Props> = ({
           <button
             style={styles.disableTheme}
             disabled={!searchAllValue}
-            onClick={HandlePlayerSearch}
-            // disabled={searchAllValue == 0}
+            onClick={(e) => {
+              e.preventDefault();
+              refetch();
+              handlePlayerSearch(e);
+            }}
             className='search-all-button'
           >
             Search

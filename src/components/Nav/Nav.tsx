@@ -1,16 +1,87 @@
-import React from 'react';
-import './Nav.scss';
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import nbalogo from '../../images/nbalogo.webp';
+import './Nav.scss';
+import Cards from '../players/Cards';
+import Teams from '../teams/Teams';
 
-const Nav = () => {
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <header>
-      <div className='nav-wrapper'>
-        <img src={nbalogo} alt='' />
-        <h1> NBA PLAYER DATABASE</h1>
-      </div>
-    </header>
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
-};
+}
 
-export default Nav;
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+export default function Nav() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <nav className='header'>
+      <div className='nav-wrapper'>
+        <div className='logo-title-wrapper'>
+          <img src={nbalogo} alt='' className='nav-logo' />
+          <h1> NBA DATABASE</h1>
+        </div>
+
+        <Box sx={{ width: '100%' }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <div className='nav-links'>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label='basic tabs example'
+              >
+                <Tab label='Players' {...a11yProps(0)} />
+
+                <Tab label='Teams' {...a11yProps(1)} />
+                <Tab label='Games' {...a11yProps(2)} />
+                <Tab label='Stats' {...a11yProps(3)} />
+              </Tabs>
+            </div>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <Cards />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Teams />
+          </TabPanel>
+          <TabPanel value={value} index={2}></TabPanel>
+          <TabPanel value={value} index={3}></TabPanel>
+        </Box>
+      </div>
+    </nav>
+  );
+}
