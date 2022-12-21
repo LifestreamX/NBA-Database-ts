@@ -31,7 +31,6 @@ const Card: React.FC<Props> = ({
     getPlayers(pageNumber)
   );
 
-  console.log(filteredAllResults?.data?.length);
   //  Card section
   return (
     <main className='entire-player-wrapper'>

@@ -28,8 +28,6 @@ main {
   align-content: center;
 }
 
-
-
 .card {
   position: relative;
   width: 100%;
@@ -41,6 +39,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#stat-card {
+  height: 500px !important;
 }
 
 .content {
@@ -57,6 +59,10 @@ main {
   border-radius: 20px !important;
 }
 
+#stat-content {
+  height: 500px;
+}
+
 .card:hover .content {
   transform: rotateY(180deg);
   transition: transform 0.5s;
@@ -70,7 +76,6 @@ main {
   background: white;
   color: #03446a;
   text-align: center;
-  // font-size: 60px;
   border-radius: 20px;
   backface-visibility: hidden;
   display: flex;
@@ -87,6 +92,11 @@ p {
   color: white !important;
   // font-size: 16px;
   font-weight: bolder;
+  // margin-bottom: 0px;
+}
+
+#stat-p {
+  margin-bottom: 0;
 }
 
 .back {
@@ -152,7 +162,6 @@ p {
   .card {
     width: 500px !important;
     padding: 20px !important;
-  
   }
 
   .card-text {

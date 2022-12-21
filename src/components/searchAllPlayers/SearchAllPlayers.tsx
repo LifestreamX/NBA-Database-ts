@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import './SearchAllPlayers.scss';
+import '.././Search.scss';
 import Alert from '@mui/material/Alert';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 import Basketball from '../basketball/Basketball';
@@ -49,10 +49,8 @@ const SearchAllPlayers: React.FC<Props> = ({
 
   setFilteredAllResults(data);
 
-  setFilteredTotalPages(data?.meta?.total_pages);
+  // setFilteredTotalPages(data?.meta?.total_pages);
 
-  const handlePlayerSearch = (e: any) => {
-  };
 
   // Styles for button if no input has been types
   const styles: any = {
@@ -98,7 +96,6 @@ const SearchAllPlayers: React.FC<Props> = ({
             onClick={(e) => {
               e.preventDefault();
               refetch();
-              handlePlayerSearch(e);
             }}
             className='search-all-button'
           >

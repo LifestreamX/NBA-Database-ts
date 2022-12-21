@@ -7,6 +7,8 @@ import nbalogo from '../../images/nbalogo.webp';
 import './Nav.scss';
 import Cards from '../players/Cards';
 import Teams from '../teams/Teams';
+import Games from '../games/Games';
+import Stats from '../stats/Stats';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -78,8 +80,12 @@ export default function Nav() {
           <TabPanel value={value} index={1}>
             <Teams />
           </TabPanel>
-          <TabPanel value={value} index={2}></TabPanel>
-          <TabPanel value={value} index={3}></TabPanel>
+          <TabPanel value={value} index={2}>
+            <Games />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Stats />
+          </TabPanel>
         </Box>
       </div>
     </nav>

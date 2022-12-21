@@ -6,7 +6,6 @@ import { getTeams } from '../Teams';
 const Team = () => {
   // Grabbing API data with useQuery
   const { data, isLoading, error } = useQuery(['teams'], () => getTeams());
-  console.log(data);
   //  Card section
   return (
     <main className='entire-player-wrapper'>

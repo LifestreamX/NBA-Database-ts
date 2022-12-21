@@ -49,7 +49,6 @@ const Cards: React.FC = () => {
   const [searchAllValue, setSearchAllValue] = useState<string>('');
   const [filteredAllResults, setFilteredAllResults] = useState<PlayerType>();
 
-  console.log(filteredAllResults);
 
   // Sort State
   const [sortedData, setSortedData] = useState<boolean>(false);
