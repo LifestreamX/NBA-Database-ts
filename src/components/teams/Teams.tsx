@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { PlayerType, TeamType } from '../../types/Players.types';
 import Spinner from '../../spinner/Spinner';
 import Team from './team/Team';
-import './Teams.scss';
 
 // API LOGIC
 const options = {

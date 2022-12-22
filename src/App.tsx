@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import Nav from './components/Nav';
+import Nav from './components/Nav/Nav';
 
 const App = () => {
   return (
