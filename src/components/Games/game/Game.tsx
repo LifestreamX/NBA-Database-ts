@@ -14,7 +14,6 @@ const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
 
   const { data } = useQuery(['games', pageNumber], () => getGames(pageNumber));
 
-  console.log(data)
 
   useEffect(() => {
     setTotalPages(data?.meta?.total_pages);

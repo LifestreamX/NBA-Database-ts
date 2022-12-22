@@ -36,14 +36,15 @@ const Games = () => {
     console.log(p);
   };
 
-  console.log(isLoading)
 
   return (
     <main>
       <main className='card-component-wrapper'>
-      
+        {isLoading ? (
+          <Spinner />
+        ) : (
           <Game pageNumber={pageNumber} handleChange={handleChange} />
-       
+        )}
       </main>
     </main>
   );
