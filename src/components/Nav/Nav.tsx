@@ -8,8 +8,8 @@ import './Nav.scss';
 import Cards from '../players/Cards';
 import Teams from '../teams/Teams';
 import Stats from '../stats/Stats';
-import { Link } from 'react-router-dom';
 import Games from '../games/Games';
+import { Link } from 'react-router-dom';
 
 interface TabPanelProps {
   children?: React.ReactNode;
