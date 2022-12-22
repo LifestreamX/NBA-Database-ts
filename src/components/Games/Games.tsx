@@ -22,7 +22,7 @@ export const getGames = async (pageNumber: any): Promise<GameType> =>
     )
   ).json();
 
-const Games = () => {
+const Games: React.FC = () => {
   const [pageNumber, setPageNumber] = useState<any>();
 
   const { isLoading } = useQuery(['games', pageNumber], () =>
@@ -35,7 +35,6 @@ const Games = () => {
     setPageNumber(p);
     console.log(p);
   };
-
 
   return (
     <main>
