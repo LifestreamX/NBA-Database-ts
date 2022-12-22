@@ -9,6 +9,7 @@ import Cards from '../players/Cards';
 import Teams from '../teams/Teams';
 import Games from '../games/Games';
 import Stats from '../stats/Stats';
+import { Link } from 'react-router-dom';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -54,7 +55,9 @@ export default function Nav() {
     <nav className='header'>
       <div className='nav-wrapper'>
         <div className='logo-title-wrapper'>
-          <img src={nbalogo} alt='' className='nav-logo' />
+          <Link to='/'>
+            <img src={nbalogo} alt='' className='nav-logo' />
+          </Link>
           <h1> NBA DATABASE</h1>
         </div>
 

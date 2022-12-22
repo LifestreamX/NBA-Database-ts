@@ -7,6 +7,7 @@ import SortMenu from '../sortmenu/SortMenu';
 import { PlayerType } from '../../types/Players.types';
 import Card from './player/Card';
 import '../Cards.scss';
+import Spinner from '../Nav/spinner/Spinner';
 
 // API LOGIC
 const options = {
@@ -48,7 +49,6 @@ const Cards: React.FC = () => {
   // Filter all state
   const [searchAllValue, setSearchAllValue] = useState<string>('');
   const [filteredAllResults, setFilteredAllResults] = useState<PlayerType>();
-
 
   // Sort State
   const [sortedData, setSortedData] = useState<boolean>(false);
@@ -125,31 +125,37 @@ const Cards: React.FC = () => {
         SearchPlayers={SearchPlayers}
       /> */}
 
-      <SearchAllPlayers
-        searchAllValue={searchAllValue}
-        setSearchAllValue={setSearchAllValue}
-        // searchingForAllPlayers={searchingForAllPlayers}
-        setFilteredAllResults={setFilteredAllResults}
-        filteredAllResults={filteredAllResults}
-        pageNumber={pageNumber}
-        setTotalPages={setTotalPages}
-        setFilteredTotalPages={setFilteredTotalPages}
-        filterPageNumber={filterPageNumber}
-      />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <SearchAllPlayers
+            searchAllValue={searchAllValue}
+            setSearchAllValue={setSearchAllValue}
+            // searchingForAllPlayers={searchingForAllPlayers}
+            setFilteredAllResults={setFilteredAllResults}
+            filteredAllResults={filteredAllResults}
+            pageNumber={pageNumber}
+            setTotalPages={setTotalPages}
+            setFilteredTotalPages={setFilteredTotalPages}
+            filterPageNumber={filterPageNumber}
+          />
 
-      <main className='card-component-wrapper'>
-        <Card
-          pageNumber={pageNumber}
-          searchInput={searchInput}
-          filteredResults={filteredResults}
-          // players={players}
-          handleChange={handleChange}
-          filteredAllResults={filteredAllResults}
-          totalPages={totalPages}
-          filteredTotalPages={filteredTotalPages}
-          handleFilterChange={handleFilterChange}
-        />
-      </main>
+          <main className='card-component-wrapper'>
+            <Card
+              pageNumber={pageNumber}
+              searchInput={searchInput}
+              filteredResults={filteredResults}
+              // players={players}
+              handleChange={handleChange}
+              filteredAllResults={filteredAllResults}
+              totalPages={totalPages}
+              filteredTotalPages={filteredTotalPages}
+              handleFilterChange={handleFilterChange}
+            />
+          </main>
+        </>
+      )}
     </main>
   );
 };

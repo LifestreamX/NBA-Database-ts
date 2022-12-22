@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { GameType } from '../../types/Players.types';
 import Game from './game/Game';
 import '../Search.scss';
+import Spinner from '../Nav/spinner/Spinner';
+import { useQuery } from 'react-query';
 
 // API LOGIC
 const options = {
@@ -20,14 +22,12 @@ export const getGames = async (pageNumber: any): Promise<GameType> =>
     )
   ).json();
 
-  
-
-
-
 const Games = () => {
- 
   const [pageNumber, setPageNumber] = useState<any>();
 
+  const { isLoading } = useQuery(['games', pageNumber], () =>
+    getGames(pageNumber)
+  );
 
   // Function to set page number to number thats clicked for pagination
   const handleChange = (e: any, p: number) => {
@@ -37,9 +37,13 @@ const Games = () => {
   };
 
   return (
-    <main>  
+    <main>
       <main className='card-component-wrapper'>
-        <Game pageNumber={pageNumber} handleChange={handleChange} />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Game pageNumber={pageNumber} handleChange={handleChange} />
+        )}
       </main>
     </main>
   );

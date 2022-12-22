@@ -7,7 +7,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 
 const App = () => {
-  const { isLoading } = useQuery<any>(['players'], getPlayers);
 
   return (
     <main className='App'>

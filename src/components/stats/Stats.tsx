@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Stat from './stat/Stat';
 import '../Search.scss';
 import { StatType } from '../../types/Players.types';
+import { useQuery } from 'react-query';
+import Spinner from '../Nav/spinner/Spinner';
 
 // API LOGIC
 const options = {
@@ -21,6 +23,7 @@ export const getStats = async (pageNumber: any): Promise<StatType> =>
   ).json();
 
 const Stats = () => {
+  const { isLoading } = useQuery(['stats'], () => getStats(pageNumber));
   const [pageNumber, setPageNumber] = useState<any>();
 
   // Function to set page number to number thats clicked for pagination
@@ -33,7 +36,11 @@ const Stats = () => {
   return (
     <main>
       <main className='card-component-wrapper'>
-        <Stat pageNumber={pageNumber} handleChange={handleChange} />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Stat pageNumber={pageNumber} handleChange={handleChange} />
+        )}
       </main>
     </main>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { PlayerType, TeamType } from '../../types/Players.types';
+import Spinner from '../Nav/spinner/Spinner';
 import Team from './team/Team';
 import './Teams.scss';
 
@@ -17,12 +18,12 @@ export const getTeams = async (): Promise<TeamType> =>
   await (await fetch('https://free-nba.p.rapidapi.com/teams', options)).json();
 
 const Teams: React.FC = () => {
-  // const PlayerData: Array<PlayerType> = data?.data;
-
+  // const PlayerData: Array<PlayerType> = data?.data
+  const { isLoading } = useQuery(['teams'], () => getTeams());
   return (
     <main>
       <main className='card-component-wrapper'>
-        <Team />
+        {isLoading ? <Spinner /> : <Team />}
       </main>
     </main>
   );

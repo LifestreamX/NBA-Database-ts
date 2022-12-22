@@ -15,9 +15,8 @@ body {
 }
 
 .spinner-wrapper {
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 80% !important;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
