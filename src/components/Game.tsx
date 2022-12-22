@@ -1,7 +1,7 @@
 import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getGames } from '../Games';
+import { getGames } from './Games';
 
 type Props = {
   pageNumber: number;

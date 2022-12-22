@@ -1,9 +1,9 @@
 import '../Search.scss';
 import Game from './game/Game';
 import { useState } from 'react';
-import { GameType } from '../../types/Players.types';
+import { GameType } from '../types/Players.types';
 import { useQuery } from 'react-query';
-import Spinner from '../../spinner/Spinner';
+import Spinner from '../spinner/Spinner';
 
 // API LOGIC
 const options = {
