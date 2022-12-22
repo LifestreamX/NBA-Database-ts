@@ -11,9 +11,7 @@ const Home = () => {
         <source src={Background} />
       </video>
       <div className='home-button-wrapper'>
-        <Link to='/database'>
-          <HomeButton />
-        </Link>
+        <HomeButton />
       </div>
     </main>
   );
