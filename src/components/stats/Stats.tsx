@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Stat from './stat/Stat';
 import '../Search.scss';
+import Stat from './stat/Stat';
+import { useState } from 'react';
 import { StatType } from '../../types/Players.types';
 import { useQuery } from 'react-query';
 import Spinner from '../../spinner/Spinner';

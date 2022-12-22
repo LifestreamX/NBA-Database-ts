@@ -9,6 +9,7 @@ import './Nav.scss';
 import { Link } from 'react-router-dom';
 import Cards from '../players/Cards';
 import Teams from '../teams/Teams';
+import Games from '../games/Games';
 import Stats from '../stats/Stats';
 
 interface TabPanelProps {
@@ -84,6 +85,7 @@ export default function Nav() {
             <Teams />
           </TabPanel>
           <TabPanel value={value} index={2}>
+            <Games />
           </TabPanel>
           <TabPanel value={value} index={3}>
             <Stats />
