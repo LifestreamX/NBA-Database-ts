@@ -12,6 +12,7 @@ import Teams from '../teams/Teams';
 import Games from '../games/Games';
 import Stats from '../stats/Stats';
 
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;

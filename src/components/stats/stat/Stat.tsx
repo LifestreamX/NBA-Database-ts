@@ -26,7 +26,7 @@ const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
             <div className='content' id='stat-content'>
               <div className='front'>
                 <p className='card-text' id='stat-p'>
-                  Date: {stat?.stat['date'].slice(0, 10)}
+                  Date: {stat?.game['date'].slice(0, 10)}
                 </p>
 
                 <p className='card-text' id='stat-p'>
