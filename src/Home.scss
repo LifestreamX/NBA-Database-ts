@@ -1,0 +1,15 @@
+.video-wrapper {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -15;
+}
+
+home-button-wrapper {
+  background-color: rebeccapurple;
+  width: 100vw !important;
+  z-index: 10;
+}

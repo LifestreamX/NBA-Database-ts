@@ -40,10 +40,17 @@ const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
                   Position: {game?.player['position']}
                 </p>
 
-                <p className='card-text' id='stat-p'>
-                  Height: {game?.player['height_feet']}’
-                  {game?.player['height_inches']}”
-                </p>
+                {game?.player['height_feet'] == null ? (
+                  <p className='card-text' id='stat-p'>
+                    Height: N/A
+                  </p>
+                ) : (
+                  <p className='card-text' id='stat-p'>
+                    Height: {game?.player['height_feet']}’
+                    {game?.player['height_inches']}”
+                  </p>
+                )}
+
                 {game?.player['weight_pounds'] == null ? (
                   <p className='card-text' id='stat-p'>
                     Weight: N/A
