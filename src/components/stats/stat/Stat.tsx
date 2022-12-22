@@ -8,13 +8,11 @@ type Props = {
   handleChange: any;
 };
 
-const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
+const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
   // Pagination pages
   const [totalPages, setTotalPages] = useState<any>();
 
   const { data } = useQuery(['stats', pageNumber], () => getStats(pageNumber));
-
-  console.log(data);
 
   useEffect(() => {
     setTotalPages(data?.meta?.total_pages);
@@ -23,41 +21,41 @@ const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
   return (
     <main className='entire-player-wrapper'>
       <section className='card-wrapper'>
-        {data?.data.map((game: any) => (
-          <div className='card' id='stat-card' key={game.id}>
+        {data?.data.map((stat: any) => (
+          <div className='card' id='stat-card' key={stat.id}>
             <div className='content' id='stat-content'>
               <div className='front'>
                 <p className='card-text' id='stat-p'>
-                  Date: {game?.game['date'].slice(0, 10)}
+                  Date: {stat?.stat['date'].slice(0, 10)}
                 </p>
 
                 <p className='card-text' id='stat-p'>
-                  Player: {game?.player['first_name']}{' '}
-                  {game?.player['last_name']}
+                  Player: {stat?.player['first_name']}{' '}
+                  {stat?.player['last_name']}
                 </p>
 
                 <p className='card-text' id='stat-p'>
-                  Position: {game?.player['position']}
+                  Position: {stat?.player['position']}
                 </p>
 
-                {game?.player['height_feet'] == null ? (
+                {stat?.player['height_feet'] == null ? (
                   <p className='card-text' id='stat-p'>
                     Height: N/A
                   </p>
                 ) : (
                   <p className='card-text' id='stat-p'>
-                    Height: {game?.player['height_feet']}’
-                    {game?.player['height_inches']}”
+                    Height: {stat?.player['height_feet']}’
+                    {stat?.player['height_inches']}”
                   </p>
                 )}
 
-                {game?.player['weight_pounds'] == null ? (
+                {stat?.player['weight_pounds'] == null ? (
                   <p className='card-text' id='stat-p'>
                     Weight: N/A
                   </p>
                 ) : (
                   <p className='card-text' id='stat-p'>
-                    Weight: {game?.player['weight_pounds']} lbs
+                    Weight: {stat?.player['weight_pounds']} lbs
                   </p>
                 )}
 
@@ -65,22 +63,22 @@ const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
               </div>
               <div className='back'>
                 <p className='card-text' id='stat-p'>
-                  Minutes: {game.min?.slice(0, 2)} min
+                  Minutes: {stat.min?.slice(0, 2)} min
                 </p>
                 <p className='card-text' id='stat-p'>
-                  Points: {game.pts}
+                  Points: {stat.pts}
                 </p>
                 <p className='card-text' id='stat-p'>
-                  Assist: {game.ast}
+                  Assist: {stat.ast}
                 </p>
                 <p className='card-text' id='stat-p'>
-                  Blocks: {game.blk}
+                  Blocks: {stat.blk}
                 </p>
                 <p className='card-text' id='stat-p'>
-                  Rebounds: {game.reb}
+                  Rebounds: {stat.reb}
                 </p>
                 <p className='card-text' id='stat-p'>
-                  Threes Made: {game.fg3m}
+                  Threes Made: {stat.fg3m}
                 </p>
                 <p className='card-text' id='stat-p'></p>
                 <p className='card-text' id='stat-p'></p>
@@ -103,4 +101,4 @@ const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
   );
 };
 
-export default Game;
+export default Stat;
