@@ -3,7 +3,7 @@ import Stat from './stat/Stat';
 import '../Search.scss';
 import { StatType } from '../../types/Players.types';
 import { useQuery } from 'react-query';
-import Spinner from '../Nav/spinner/Spinner';
+import Spinner from '../../spinner/Spinner';
 
 // API LOGIC
 const options = {

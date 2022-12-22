@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useQuery } from 'react-query';
 import { PlayerType, TeamType } from '../../types/Players.types';
-import Spinner from '../Nav/spinner/Spinner';
+import Spinner from '../../spinner/Spinner';
 import Team from './team/Team';
 import './Teams.scss';
 

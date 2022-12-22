@@ -1,14 +1,11 @@
 import { useState, CSSProperties, useEffect, useRef } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
-import { useWindowResize } from '../../hooks/windowSizeHook';
-
+import { useWindowResize } from '../components/hooks/windowSizeHook';
 
 const override: CSSProperties = {
   display: 'block',
   margin: ' auto',
 };
-
-
 
 function Spinner() {
   let [loading, setLoading] = useState<boolean>(true);
@@ -18,7 +15,7 @@ function Spinner() {
 
   let [spinnerSize, setSpinnerSize] = useState<number>(0);
 
-// Sets spinner size base of width of screen
+  // Sets spinner size base of width of screen
   useEffect(() => {
     if (width <= 480) {
       setSpinnerSize(100);
@@ -28,7 +25,6 @@ function Spinner() {
       setSpinnerSize(300);
     }
   }, [width]);
-
 
   return (
     <ClipLoader

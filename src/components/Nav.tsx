@@ -3,13 +3,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import nbalogo from '../../images/nbalogo.webp';
+// import nbalogo from '../../images/nbalogo.webp';
+import nbalogo from '../images/nbalogo.webp';
 import './Nav.scss';
-import Cards from '../players/Cards';
-import Teams from '../teams/Teams';
-import Stats from '../stats/Stats';
-import Games from '../games/Games';
+
 import { Link } from 'react-router-dom';
+import Cards from './players/Cards';
+import Teams from './teams/Teams';
+import Games from './games/Games';
+import Stats from './stats/Stats';
 
 interface TabPanelProps {
   children?: React.ReactNode;

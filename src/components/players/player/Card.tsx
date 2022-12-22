@@ -4,7 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import { useQuery } from 'react-query';
 import { getPlayers } from '../Cards';
 import '../../Card.scss';
-import Spinner from '../../Nav/spinner/Spinner';
+import Spinner from '../../../spinner/Spinner';
 
 type Props = {
   searchInput: string;

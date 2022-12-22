@@ -7,7 +7,7 @@ import SortMenu from '../sortmenu/SortMenu';
 import { PlayerType } from '../../types/Players.types';
 import Card from './player/Card';
 import '../Cards.scss';
-import Spinner from '../Nav/spinner/Spinner';
+import Spinner from '../../spinner/Spinner';
 
 // API LOGIC
 const options = {

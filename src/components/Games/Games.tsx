@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { GameType } from '../../types/Players.types';
 import Game from './game/Game';
 import '../Search.scss';
-import Spinner from '../Nav/spinner/Spinner';
 import { useQuery } from 'react-query';
+import Spinner from '../../spinner/Spinner';
 
 // API LOGIC
 const options = {
