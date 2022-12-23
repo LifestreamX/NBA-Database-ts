@@ -1,30 +1,28 @@
 import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getGames } from './Games';
+import { GameTypeData } from '../types/Players.types';
+import { getGames } from './API';
 
 type Props = {
   pageNumber: number;
-  handleChange: any;
+  handleChange: (e: any, p: number) => void;
 };
 
 const Game: React.FC<Props> = ({ pageNumber, handleChange }) => {
   // Pagination pages
-  const [totalPages, setTotalPages] = useState<any>();
+  const [totalPages, setTotalPages] = useState<number>();
 
   const { data } = useQuery(['games', pageNumber], () => getGames(pageNumber));
-
 
   useEffect(() => {
     setTotalPages(data?.meta?.total_pages);
   }, [data?.meta?.total_pages]);
 
-  
-
   return (
     <main className='entire-player-wrapper'>
       <section className='card-wrapper'>
-        {data?.data.map((game: any) => (
+        {data?.data.map((game: GameTypeData) => (
           <div className='card' key={game.id}>
             <div className='content'>
               <div className='front'>

@@ -45,8 +45,8 @@ export interface TeamTypeMeta {
 }
 
 export interface TeamType {
-  data: PlayerTypeData[];
-  meta: PlayerTypeMeta;
+  data: TeamTypeData[];
+  meta: TeamTypeMeta;
 }
 
 // Game Types
@@ -71,6 +71,7 @@ export interface GameTypeData {
   status: string;
   time: string;
   visitor_team: HomeAndAwayTeamType;
+  visitor_team_score: number;
 }
 
 export interface GameTypeMeta {
@@ -112,6 +113,10 @@ export interface PlayerStatType {
   weight_pounds: number;
 }
 
+export interface TeamType {
+  abbreviation: string;
+}
+
 export interface StatTypeData {
   ast: number;
   blk: number;
@@ -122,11 +127,16 @@ export interface StatTypeData {
   fg_pct: number;
   fga: number;
   fgm: number;
+  reb: number;
   ft_pct: number;
   fta: number;
   ftm: number;
+  pts: number;
+  id: number;
+  min: string;
   game: GameStatType;
   player: PlayerStatType;
+  team: TeamType;
 }
 
 export interface StatTypeMeta {
@@ -138,6 +148,6 @@ export interface StatTypeMeta {
 }
 
 export interface StatType {
-  data: PlayerTypeData[];
-  meta: PlayerTypeMeta;
+  data: StatTypeData[];
+  meta: StatTypeMeta;
 }

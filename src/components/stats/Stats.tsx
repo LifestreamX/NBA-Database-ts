@@ -1,34 +1,18 @@
 import '../Search.scss';
 import Stat from './stat/Stat';
 import { useState } from 'react';
-import { StatType } from '../../types/Players.types';
 import { useQuery } from 'react-query';
 import Spinner from '../../spinner/Spinner';
-
-// API LOGIC
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': 'cb7dfb7b40msh9a3b45b655e8effp17b293jsna42fa502c4b0',
-    'X-RapidAPI-Host': 'free-nba.p.rapidapi.com',
-  },
-};
-
-export const getStats = async (pageNumber: any): Promise<StatType> =>
-  await (
-    await fetch(
-      `https://free-nba.p.rapidapi.com/stats?page=${pageNumber}per_page=20}`,
-      options
-    )
-  ).json();
+import { getStats } from '../API';
 
 const Stats = () => {
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  
   const { isLoading } = useQuery(['stats'], () => getStats(pageNumber));
-  const [pageNumber, setPageNumber] = useState<any>();
 
+  
   // Function to set page number to number thats clicked for pagination
   const handleChange = (e: any, p: number) => {
-    // console.log(e, p);
     setPageNumber(p);
     console.log(p);
   };

@@ -4,52 +4,35 @@ import '.././Search.scss';
 import Alert from '@mui/material/Alert';
 import { isDisabled } from '@testing-library/user-event/dist/utils';
 import Basketball from '../basketball/Basketball';
-import { getFilteredPlayers } from '../players/Cards';
+import { getFilteredPlayers } from '../API';
 
 type Props = {
-  searchAllValue: any;
-  setFilteredAllResults: any;
+  searchAllValue: string;
   setSearchAllValue: any;
+  setFilteredAllResults: any;
   filteredAllResults: any;
   pageNumber: number;
-  setTotalPages: any;
-  setFilteredTotalPages: any;
-  filterPageNumber: any;
 };
 
-export type dataType = {
-  filterData: any;
-};
 
-// API LOGIC
-const options = {
-  method: 'GET',
-  params: { page: '1', per_page: '25' },
-
-  headers: {
-    'X-RapidAPI-Key': 'cb7dfb7b40msh9a3b45b655e8effp17b293jsna42fa502c4b0',
-    'X-RapidAPI-Host': 'free-nba.p.rapidapi.com',
-  },
-};
 
 const SearchAllPlayers: React.FC<Props> = ({
-  //   searchingForAllPlayers,
   searchAllValue,
   setFilteredAllResults,
   setSearchAllValue,
   filteredAllResults,
-  setFilteredTotalPages,
-  filterPageNumber,
 }) => {
+
+  
+
+
   const { data, refetch } = useQuery(
-    ['filteredplayers', filterPageNumber, searchAllValue],
-    () => getFilteredPlayers(filterPageNumber, searchAllValue),
+    ['filteredplayers', searchAllValue],
+    () => getFilteredPlayers(searchAllValue),
     { enabled: false }
   );
 
   setFilteredAllResults(data);
-
-  // setFilteredTotalPages(data?.meta?.total_pages);
 
 
   // Styles for button if no input has been types

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Pagination from '@mui/material/Pagination';
+import React from 'react';
 import { useQuery } from 'react-query';
-import { getTeams } from '../Teams';
+import { TeamTypeData } from '../../../types/Players.types';
+import { getTeams } from '../../API';
 
 const Team = () => {
   // Grabbing API data with useQuery
-  const { data, isLoading, error } = useQuery(['teams'], () => getTeams());
+  const { data } = useQuery(['teams'], () => getTeams());
   //  Card section
   return (
     <main className='entire-player-wrapper'>
       <section className='card-wrapper'>
-        {data?.data.map((team: any) => (
+        {data?.data.map((team: TeamTypeData) => (
           <div className='card' key={team.id}>
             <div className='content'>
               <div className='front'>
@@ -24,7 +24,6 @@ const Team = () => {
           </div>
         ))}
       </section>
-      
     </main>
   );
 };

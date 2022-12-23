@@ -1,16 +1,17 @@
 import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { getStats } from '../Stats';
+import { StatTypeData } from '../../../types/Players.types';
+import { getStats } from '../../API';
 
 type Props = {
   pageNumber: number;
-  handleChange: any;
+  handleChange: (e: any, p: number) => void;
 };
 
 const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
   // Pagination pages
-  const [totalPages, setTotalPages] = useState<any>();
+  const [totalPages, setTotalPages] = useState<number>();
 
   const { data } = useQuery(['stats', pageNumber], () => getStats(pageNumber));
 
@@ -18,10 +19,11 @@ const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
     setTotalPages(data?.meta?.total_pages);
   }, [data?.meta?.total_pages]);
 
+
   return (
     <main className='entire-player-wrapper'>
       <section className='card-wrapper'>
-        {data?.data.map((stat: any) => (
+        {data?.data.map((stat: StatTypeData) => (
           <div className='card' id='stat-card' key={stat.id}>
             <div className='content' id='stat-content'>
               <div className='front'>
@@ -32,6 +34,10 @@ const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
                 <p className='card-text' id='stat-p'>
                   Player: {stat?.player['first_name']}{' '}
                   {stat?.player['last_name']}
+                </p>
+
+                <p className='card-text' id='stat-p'>
+                  Team: {stat?.team['abbreviation']}
                 </p>
 
                 <p className='card-text' id='stat-p'>
@@ -87,6 +93,8 @@ const Stat: React.FC<Props> = ({ pageNumber, handleChange }) => {
           </div>
         ))}
       </section>
+
+      
       {/* PAGINATION SECTION */}
       <section className='pagination-wrapper'>
         <Pagination

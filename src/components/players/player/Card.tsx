@@ -1,40 +1,35 @@
 import React, { useEffect, useState } from 'react';
-// import { getPlayers } from '../../API';
 import Pagination from '@mui/material/Pagination';
 import { useQuery } from 'react-query';
-import { getPlayers } from '../Cards';
 import '../../Card.scss';
+import { getPlayers } from '../../API';
 import Spinner from '../../../spinner/Spinner';
 
 type Props = {
-  searchInput: string;
-  filteredResults: any;
-  handleChange: any;
   filteredAllResults: any;
   pageNumber: number;
-  totalPages: number;
-  filteredTotalPages: any;
-  handleFilterChange: any;
+  handleChange: (e: any, p: number) => void;
 };
 
 const Card: React.FC<Props> = ({
   handleChange,
   filteredAllResults,
   pageNumber,
-  totalPages,
-  searchInput,
-  filteredResults,
-  filteredTotalPages,
-  handleFilterChange,
 }) => {
-  // Grabbing API data with useQuery
-  const { data } = useQuery(['players', pageNumber], () =>
+  // Pagination pages
+  const [totalPages, setTotalPages] = useState<number>();
+
+  const { isLoading, data } = useQuery(['players', pageNumber], () =>
     getPlayers(pageNumber)
   );
 
-  //  Card section
+  useEffect(() => {
+    setTotalPages(data?.meta?.total_pages);
+  }, [data?.meta?.total_pages]);
+
   return (
     <main className='entire-player-wrapper'>
+      {isLoading && <Spinner />}
       {filteredAllResults?.data?.length > 0 ? (
         <section className='card-wrapper'>
           {filteredAllResults?.data?.map((player: any) => (
